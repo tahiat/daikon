@@ -5,11 +5,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-/*>>>
-import org.checkerframework.checker.initialization.qual.*;
-import org.checkerframework.checker.lock.qual.*;
-import org.checkerframework.checker.nullness.qual.*;
-*/
+
+//import org.checkerframework.checker.initialization.qual.*;
+//import org.checkerframework.checker.lock.qual.*;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+//*/
 
 /**
  * The PureMethodInfo class is a subtype of DaikonVariableInfo used for "variable types" which
@@ -127,14 +128,14 @@ public class PureMethodInfo extends DaikonVariableInfo {
     return params;
   }
 
-  private static /*@Nullable*/ Object executePureMethod(
-      Method meth, Object receiverVal, /*@Nullable*/ Object[] argVals) {
+  private static @Nullable Object executePureMethod(
+      Method meth, Object receiverVal, @Nullable Object[] argVals) {
     // Between startPure() and endPure(), no output is done to the trace file.
     // Without this synchronization, other threads would observe that
     // startPure has been called and wouldn't do any output.
     synchronized (Runtime.class) {
       // Initialization is unnecessary, but without it the Rawness Checker issues an error at the return statement.
-      Object retVal = null;
+      Object retVal;
       try {
         // TODO is this the best way to handle this problem?
         // (when we invoke a pure method, Runtime.Enter should not be
