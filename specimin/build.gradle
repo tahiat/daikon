@@ -18,7 +18,7 @@ repositories {
 
 checkerFramework {
      checkers = [
-            'org.checkerframework.checker.nullness.NullnessChecker'
+            'org.checkerframework.checker.nullness.NullnessRawnessChecker'
     ]
     excludeTests = true
     incrementalize = false
