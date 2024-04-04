@@ -1,0 +1,5 @@
+daikon/chicory/PureMethodInfo.java:171: error: [return.type.incompatible] incompatible types in return.
+      return retVal;
+             ^
+  found   : @Nullable @Raw Object
+  required: @NonRaw @Nullable Object
